@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>致程彤彤 · 宁波大学毕业季回忆录</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@400;500;700&family=Caveat:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #ede4d3;
+    --paper-card: #f8f1e4;
+    --ink: #2b2420;
+    --ink-soft: #6f6052;
+    --brick: #9c4a35;
+    --brick-dark: #6e3024;
+    --lawn: #46613d;
+    --line: #d8c9ad;
+  }
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Noto Sans SC', sans-serif;
+    line-height:1.7;
+    position:relative;
+  }
+
+  /* ---------- illustrated campus backdrop ---------- */
+  .campus-bg{
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    overflow:hidden;
+    pointer-events:none;
+  }
+  .campus-bg svg{
+    position:absolute;
+    bottom:0; left:0;
+    width:100%;
+    height:62vh;
+    min-height:340px;
+  }
+  .campus-bg .fade{
+    position:absolute; inset:0;
+    background:linear-gradient(to bottom, var(--paper) 0%, rgba(237,228,211,0.55) 22%, rgba(237,228,211,0) 46%);
+  }
+
+  a{ color:inherit; }
+  .wrap{ max-width:1060px; margin:0 auto; padding:0 24px; }
+  .serif{ font-family:'Noto Serif SC', serif; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+  .hand{ font-family:'Caveat', cursive; }
+
+  :focus-visible{ outline:3px solid var(--brick); outline-offset:3px; }
+
+  /* ---------- top ---------- */
+  .top{
+    padding:26px 0 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:0.8rem;
+    color:var(--ink-soft);
+  }
+  .top .mark{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-family:'Noto Serif SC', serif;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .top .mark .dot{ width:8px;height:8px;border-radius:50%;background:var(--brick); }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:48px 0 70px; position:relative; }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap:48px;
+    align-items:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    color:var(--ink-soft);
+    margin-bottom:16px;
+  }
+  h1.title{
+    font-family:'Noto Serif SC', serif;
+    font-weight:900;
+    font-size:clamp(2.3rem, 5vw, 3.6rem);
+    line-height:1.25;
+    margin:0 0 20px;
+  }
+  h1.title .accent{ color:var(--brick); }
+  .lede{
+    color:var(--ink-soft);
+    font-size:1.02rem;
+    max-width:480px;
+    margin:0 0 26px;
+  }
+  .motto-line{
+    font-family:'Noto Serif SC', serif;
+    font-size:1rem;
+    color:var(--brick-dark);
+    border-left:3px solid var(--brick);
+    padding-left:14px;
+    margin:0 0 30px;
+  }
+  .hero-links{ display:flex; gap:22px; font-size:0.92rem; }
+  .hero-links a{
+    text-decoration:none;
+    border-bottom:1.5px solid var(--ink);
+    padding-bottom:2px;
+  }
+
+  /* postcard / stamp */
+  .postcard{
+    background:var(--paper-card);
+    border:1.5px solid var(--ink);
+    border-radius:6px;
+    padding:22px;
+    position:relative;
+    box-shadow:6px 8px 0 rgba(43,36,32,0.08);
+  }
+  .postcard-head{
+    display:flex; justify-content:space-between; align-items:flex-start;
+    margin-bottom:14px;
+  }
+  .stamp{
+    width:78px; height:96px;
+    border:2px dashed var(--brick);
+    border-radius:3px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    color:var(--brick-dark);
+    flex-shrink:0;
+  }
+  .stamp svg{ width:34px; height:34px; }
+  .stamp span{ font-family:'IBM Plex Mono', monospace; font-size:0.6rem; margin-top:4px; }
+
+  .postmark{
+    width:118px; height:118px;
+    position:absolute;
+    top:34px; right:46px;
+    opacity:0;
+    transform:scale(1.5) rotate(-6deg);
+    animation: stampin .6s ease-out 0.4s forwards;
+    pointer-events:none;
+  }
+  @keyframes stampin{
+    0%{ opacity:0; transform:scale(1.7) rotate(-16deg); }
+    65%{ opacity:0.9; transform:scale(0.95) rotate(8deg); }
+    100%{ opacity:0.85; transform:scale(1) rotate(6deg); }
+  }
+  .postmark svg{ width:100%; height:100%; }
+
+  .postcard-line{ height:1px; background:var(--line); margin:14px 0; }
+  .postcard-addr{
+    font-family:'Caveat', cursive;
+    font-size:1.3rem;
+    color:var(--ink-soft);
+  }
+  .postcard-addr b{ color:var(--ink); font-weight:700; }
+
+  /* ---------- sections ---------- */
+  section{ padding:60px 0; }
+  .section-head{ margin-bottom:36px; max-width:600px; }
+  .section-head .tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.1em;
+    color:var(--brick-dark);
+    display:block;
+    margin-bottom:10px;
+  }
+  .section-head h2{
+    font-family:'Noto Serif SC', serif;
+    font-size:1.9rem;
+    margin:0 0 10px;
+  }
+  .section-head p{ color:var(--ink-soft); margin:0; font-size:0.96rem; }
+
+  .reveal{ opacity:0; transform:translateY(18px); transition:opacity .55s ease, transform .55s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* memory postcards grid */
+  .memory-grid{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+  }
+  .card-flip{ perspective:1400px; height:230px; }
+  .card-flip button{
+    all:unset;
+    display:block;
+    width:100%; height:100%;
+    cursor:pointer;
+  }
+  .card-inner{
+    position:relative;
+    width:100%; height:100%;
+    transition:transform .6s cubic-bezier(.3,.7,.2,1);
+    transform-style:preserve-3d;
+  }
+  .card-flip.flipped .card-inner{ transform:rotateY(180deg); }
+  .card-face{
+    position:absolute; inset:0;
+    backface-visibility:hidden;
+    border:1.5px solid var(--ink);
+    border-radius:6px;
+    padding:18px;
+    background:var(--paper-card);
+    display:flex; flex-direction:column;
+  }
+  .card-face.back{ transform:rotateY(180deg); justify-content:center; }
+  .card-icon{ color:var(--brick-dark); margin-bottom:10px; }
+  .card-icon svg{ width:36px; height:36px; }
+  .card-face h3{
+    font-family:'Noto Serif SC', serif;
+    font-size:1.08rem;
+    margin:0 0 6px;
+  }
+  .card-face .loc{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.66rem;
+    color:var(--ink-soft);
+    letter-spacing:0.06em;
+  }
+  .card-face .hint{
+    margin-top:auto;
+    font-size:0.76rem;
+    color:var(--ink-soft);
+  }
+  .card-face.back p{
+    font-family:'Caveat', cursive;
+    font-size:1.3rem;
+    color:var(--brick-dark);
+    margin:0;
+    line-height:1.45;
+  }
+  .perf{
+    position:absolute; top:-1px; left:14px; right:14px;
+    height:6px;
+    background-image: radial-gradient(circle, var(--paper) 2.5px, transparent 2.6px);
+    background-size: 12px 12px;
+    background-position: 0 -3px;
+  }
+
+  /* egret divider */
+  .egret-strip{
+    height:60px;
+    position:relative;
+    overflow:hidden;
+    margin:10px 0 0;
+  }
+  .egret{
+    position:absolute;
+    top:50%;
+    color:var(--ink-soft);
+    opacity:0.55;
+    width:30px; height:30px;
+    animation: fly 16s linear infinite;
+  }
+  .egret svg{ width:100%; height:100%; }
+  .egret.e2{ animation-duration:22s; animation-delay:-6s; top:30%; }
+  .egret.e3{ animation-duration:19s; animation-delay:-11s; top:65%; }
+  @keyframes fly{
+    from{ transform:translateX(-10vw) translateY(0); }
+    to{ transform:translateX(110vw) translateY(-14px); }
+  }
+
+  /* timeline */
+  .timeline{ position:relative; padding-left:32px; }
+  .timeline::before{
+    content:"";
+    position:absolute; left:7px; top:6px; bottom:6px;
+    width:2px; background:var(--line);
+  }
+  .t-item{ position:relative; padding-bottom:34px; }
+  .t-item:last-child{ padding-bottom:0; }
+  .t-item::before{
+    content:"";
+    position:absolute; left:-32px; top:4px;
+    width:16px; height:16px; border-radius:50%;
+    background:var(--paper-card);
+    border:2.5px solid var(--brick);
+  }
+  .t-item .year{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.72rem;
+    color:var(--brick-dark);
+    letter-spacing:0.08em;
+    display:block;
+    margin-bottom:4px;
+  }
+  .t-item h3{ font-family:'Noto Serif SC', serif; margin:0 0 6px; font-size:1.15rem; }
+  .t-item p{ margin:0; color:var(--ink-soft); font-size:0.92rem; max-width:560px; }
+
+  /* message wall */
+  .wall-form{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+    margin-bottom:14px;
+  }
+  .wall-form textarea{ grid-column:1 / -1; }
+  .wall-form input, .wall-form textarea{
+    font-family:'Noto Sans SC', sans-serif;
+    font-size:0.92rem;
+    border:1.5px solid var(--ink);
+    background:var(--paper-card);
+    border-radius:4px;
+    padding:11px 13px;
+    color:var(--ink);
+    resize:vertical;
+  }
+  .wall-form textarea{ min-height:80px; }
+  .wall-submit{
+    font-family:'Noto Serif SC', serif;
+    font-weight:700;
+    background:var(--brick);
+    color:var(--paper-card);
+    border:none;
+    padding:11px 26px;
+    border-radius:4px;
+    cursor:pointer;
+    font-size:0.95rem;
+    transition:transform .15s, background .15s;
+  }
+  .wall-submit:hover{ background:var(--brick-dark); transform:translateY(-1px); }
+  .wall-hint{ font-size:0.75rem; color:var(--ink-soft); margin:8px 0 28px; }
+
+  .wall{
+    display:flex; flex-wrap:wrap; gap:14px;
+  }
+  .wall-note{
+    background:var(--paper-card);
+    border:1.5px solid var(--ink);
+    border-radius:4px;
+    padding:14px 16px;
+    width:230px;
+    transform:rotate(var(--r, 0deg));
+    box-shadow:3px 4px 0 rgba(43,36,32,0.07);
+  }
+  .wall-note .who{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:0.68rem;
+    color:var(--ink-soft);
+    margin-bottom:6px;
+  }
+  .wall-note p{
+    font-family:'Caveat', cursive;
+    font-size:1.18rem;
+    margin:0;
+    color:var(--ink);
+    line-height:1.4;
+    word-break:break-word;
+  }
+  .wall-empty{ color:var(--ink-soft); font-size:0.88rem; }
+
+  footer{
+    border-top:1.5px solid var(--ink);
+    padding:40px 0 56px;
+    text-align:center;
+  }
+  .seal{
+    display:inline-flex; align-items:center; gap:10px;
+    font-family:'Noto Serif SC', serif;
+    font-weight:700;
+    color:var(--brick-dark);
+    border:2px solid var(--brick-dark);
+    border-radius:50%;
+    width:108px; height:108px;
+    justify-content:center;
+    text-align:center;
+    font-size:0.85rem;
+    line-height:1.3;
+    margin-bottom:16px;
+  }
+  footer p{ color:var(--ink-soft); font-size:0.82rem; margin:4px 0; }
+
+  @media (max-width:880px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .memory-grid{ grid-template-columns:1fr 1fr; }
+    .wall-form{ grid-template-columns:1fr; }
+  }
+  @media (max-width:560px){
+    .memory-grid{ grid-template-columns:1fr; }
+    .postmark{ display:none; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+    .postmark{ opacity:0.85; transform:scale(1) rotate(6deg); }
+    .egret{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="campus-bg" aria-hidden="true">
+  <svg viewBox="0 0 1600 480" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- sky -->
+    <rect x="0" y="0" width="1600" height="480" fill="#ede4d3"/>
+
+    <!-- distant trees line -->
+    <g fill="#46613d" opacity="0.18">
+      <circle cx="60" cy="300" r="34"/>
+      <circle cx="120" cy="290" r="28"/>
+      <circle cx="1480" cy="296" r="32"/>
+      <circle cx="1540" cy="306" r="26"/>
+    </g>
+
+    <!-- 真诚图书馆 silhouette -->
+    <g fill="#9c4a35" opacity="0.16">
+      <path d="M260 330 V230 L320 195 L380 230 V330 Z"/>
+      <rect x="285" y="260" width="16" height="70"/>
+      <rect x="312" y="260" width="16" height="70"/>
+      <rect x="339" y="260" width="16" height="70"/>
+    </g>
+
+    <!-- 主楼群 red brick row -->
+    <g fill="#9c4a35" opacity="0.16">
+      <rect x="470" y="250" width="120" height="110"/>
+      <polygon points="470,250 530,210 590,250"/>
+      <rect x="610" y="270" width="90" height="90"/>
+      <rect x="720" y="240" width="140" height="120"/>
+      <polygon points="720,240 790,200 860,240"/>
+    </g>
+
+    <!-- 校训石 -->
+    <g fill="#6e3024" opacity="0.2">
+      <path d="M960 360 L955 320 Q955 300 985 298 Q1015 300 1012 320 L1008 360 Z"/>
+    </g>
+
+    <!-- 钟楼 / 礼堂 -->
+    <g fill="#9c4a35" opacity="0.16">
+      <rect x="1080" y="230" width="70" height="130"/>
+      <polygon points="1080,230 1115,190 1150,230"/>
+      <rect x="1108" y="200" width="14" height="30"/>
+    </g>
+
+    <g fill="#9c4a35" opacity="0.16">
+      <rect x="1220" y="260" width="160" height="100"/>
+    </g>
+
+    <!-- 大草坪 foreground -->
+    <path d="M0 480 V400 Q400 360 800 392 Q1200 420 1600 388 V480 Z" fill="#46613d" opacity="0.22"/>
+    <path d="M0 480 V430 Q400 400 800 422 Q1200 442 1600 418 V480 Z" fill="#46613d" opacity="0.30"/>
+
+    <!-- 白鹭 -->
+    <g stroke="#2b2420" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.28">
+      <path d="M120 150 Q140 130 160 144 Q170 122 192 138"/>
+      <path d="M1300 120 Q1320 100 1340 114 Q1350 92 1372 108"/>
+      <path d="M700 90 Q718 74 736 86 Q745 66 765 80"/>
+    </g>
+  </svg>
+  <div class="fade"></div>
+</div>
+
+<div class="wrap top">
+  <span class="mark"><span class="dot"></span>致 程彤彤</span>
+  <span class="mono">宁波大学 出品 · 2026 毕业季</span>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow mono">宁波大学 · 写给程彤彤的毕业季回忆录</span>
+      <h1 class="title">致<br><span class="accent">程彤彤</span></h1>
+      <p class="lede">大草坪、图书馆的灯、跑道上的夜跑荧光、食堂三楼的锅贴——宁波大学把这四年悄悄记了下来，折成一张明信片，寄给即将远行的你。</p>
+      <p class="motto-line">实事求是，经世致用 —— 写在校训石上,也刻在我们身上。</p>
+      <div class="hero-links">
+        <a href="#memory">翻一翻回忆角 ↓</a>
+        <a href="#wall">写下留言 ↓</a>
+      </div>
+    </div>
+
+    <div class="postcard">
+      <div class="postmark" aria-hidden="true">
+        <svg viewBox="0 0 120 120">
+          <circle cx="60" cy="60" r="50" fill="none" stroke="currentColor" stroke-width="2.5" style="color:#6e3024"/>
+          <circle cx="60" cy="60" r="40" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="2 3" style="color:#6e3024"/>
+          <text x="60" y="36" text-anchor="middle" font-family="Caveat" font-size="13" fill="#6e3024">NINGBO UNIVERSITY</text>
+          <text x="60" y="66" text-anchor="middle" font-family="Noto Serif SC" font-weight="900" font-size="20" fill="#6e3024">毕业</text>
+          <text x="60" y="92" text-anchor="middle" font-family="IBM Plex Mono" font-size="11" fill="#6e3024">2026 · 06</text>
+        </svg>
+      </div>
+      <div class="postcard-head">
+        <div>
+          <span class="eyebrow mono" style="margin-bottom:6px;">POSTCARD FROM</span>
+          <h3 class="serif" style="margin:0;font-size:1.1rem;">宁波市江北区风华路818号</h3>
+        </div>
+        <div class="stamp">
+          <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 50 L14 28 L32 14 L50 28 L50 50 Z"/>
+            <path d="M24 50 L24 36 L40 36 L40 50"/>
+          </svg>
+          <span>NBU</span>
+        </div>
+      </div>
+      <div class="postcard-line"></div>
+      <p class="postcard-addr">寄给：<b>程彤彤</b> 同学<br>从：宁波大学 · 东海岸边的这座校园</p>
+    </div>
+  </div>
+</header>
+
+<section id="memory" class="reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag mono">01 · MEMORY CORNER</span>
+      <h2>校园记忆角</h2>
+      <p>点一下卡片，翻到背面，看看程彤彤和这些地方的故事。</p>
+    </div>
+
+    <div class="memory-grid">
+
+      <div class="card-flip">
+        <button type="button" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-face front">
+              <div class="perf"></div>
+              <div class="card-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <path d="M6 50 Q20 34 32 50 Q44 34 58 50"/>
+                  <path d="M14 50 V40 M22 50 V42 M32 50 V38 M42 50 V42 M50 50 V40"/>
+                  <circle cx="48" cy="14" r="6"/>
+                </svg>
+              </div>
+              <h3 class="serif">大草坪</h3>
+              <span class="loc mono">LOCATION · 校园中心</span>
+              <span class="hint">点击翻面 →</span>
+            </div>
+            <div class="card-face back">
+              <p>"草坚韧无比，躺久了也不脏。"<br>放风筝、晒太阳、铺一张垫子假装在过周末的那块草坪。</p>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="card-flip">
+        <button type="button" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-face front">
+              <div class="perf"></div>
+              <div class="card-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 52 V20 L32 10 L54 20 V52"/>
+                  <path d="M10 52 H54"/>
+                  <path d="M22 52 V30 H42 V52"/>
+                </svg>
+              </div>
+              <h3 class="serif">真诚图书馆</h3>
+              <span class="loc mono">LOCATION · 主校区</span>
+              <span class="hint">点击翻面 →</span>
+            </div>
+            <div class="card-face back">
+              <p>考研那年的灯一直亮到闭馆音乐响起。<br>那张靠窗的大桌子，留过太多本写满字的笔记。</p>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="card-flip">
+        <button type="button" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-face front">
+              <div class="perf"></div>
+              <div class="card-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <ellipse cx="32" cy="34" rx="26" ry="14"/>
+                  <ellipse cx="32" cy="34" rx="16" ry="8"/>
+                  <circle cx="46" cy="24" r="3" fill="currentColor" stroke="none"/>
+                </svg>
+              </div>
+              <h3 class="serif">包玉刚跑道</h3>
+              <span class="loc mono">LOCATION · 环校七公里</span>
+              <span class="hint">点击翻面 →</span>
+            </div>
+            <div class="card-face back">
+              <p>荧光夜跑那晚，整条跑道像撒了一把星星。<br>跑到第三公里时谁先喊了"撑不住"，已经不记得了。</p>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="card-flip">
+        <button type="button" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-face front">
+              <div class="perf"></div>
+              <div class="card-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+                  <path d="M14 26 Q32 14 50 26"/>
+                  <path d="M14 26 V40 Q32 50 50 40 V26"/>
+                  <path d="M22 26 V18 M42 26 V18"/>
+                </svg>
+              </div>
+              <h3 class="serif">甬江公寓三楼</h3>
+              <span class="loc mono">LOCATION · 食堂</span>
+              <span class="hint">点击翻面 →</span>
+            </div>
+            <div class="card-face back">
+              <p>一份锅贴配一碗冰绿豆汤，是赶论文那阵的续命套餐。<br>排队的人再多，也愿意等。</p>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="card-flip">
+        <button type="button" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-face front">
+              <div class="perf"></div>
+              <div class="card-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M10 44 Q18 30 28 38 Q34 24 44 34 Q50 26 56 32"/>
+                  <path d="M40 18 Q48 16 50 24 Q56 22 56 30 Q48 32 44 26"/>
+                </svg>
+              </div>
+              <h3 class="serif">白鹭掠过的午后</h3>
+              <span class="loc mono">LOCATION · 整个校园</span>
+              <span class="hint">点击翻面 →</span>
+            </div>
+            <div class="card-face back">
+              <p>春夏交接的下午，一群白鹭低低飞过教学楼。<br>抬头看一眼，再低头继续赶due，是宁大限定的分心。</p>
+            </div>
+          </div>
+        </button>
+      </div>
+
+      <div class="card-flip">
+        <button type="button" aria-pressed="false">
+          <div class="card-inner">
+            <div class="card-face front">
+              <div class="perf"></div>
+              <div class="card-icon">
+                <svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 50 L16 30 Q16 18 32 16 Q48 18 48 30 L46 50 Z"/>
+                  <path d="M27 30 V42 M37 30 V42"/>
+                </svg>
+              </div>
+              <h3 class="serif">校训石</h3>
+              <span class="loc mono">LOCATION · 北大门</span>
+              <span class="hint">点击翻面 →</span>
+            </div>
+            <div class="card-face back">
+              <p>"实事求是，经世致用"刻在晚霞红的石头上。<br>新生报到那天没看懂，毕业那天突然全懂了。</p>
+            </div>
+          </div>
+        </button>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="egret-strip" aria-hidden="true">
+  <div class="egret e1"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 40 Q18 24 30 34 Q38 18 50 30"/></svg></div>
+  <div class="egret e2"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 40 Q18 24 30 34 Q38 18 50 30"/></svg></div>
+  <div class="egret e3"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 40 Q18 24 30 34 Q38 18 50 30"/></svg></div>
+</div>
+
+<section id="timeline" class="reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag mono">02 · FOUR YEARS</span>
+      <h2>四年时光线</h2>
+      <p>程彤彤，从拖着行李箱走进北大门，到拖着行李箱走出去——中间这四年，宁波大学陪着你刚好长大。</p>
+    </div>
+
+    <div class="timeline">
+      <div class="t-item">
+        <span class="year mono">大一 · 初见</span>
+        <h3>军训晒黑的那个九月</h3>
+        <p>你第一次认全寝室室友的名字，第一次在大草坪迷路，第一次发现宁大的食堂选择多到要纠结。</p>
+      </div>
+      <div class="t-item">
+        <span class="year mono">大二 · 扎根</span>
+        <h3>社团、夜跑与赶due的平衡术</h3>
+        <p>你加入了社团，学会了在图书馆和宿舍之间找到自己的节奏，开始有了"属于宁大"的生活方式。</p>
+      </div>
+      <div class="t-item">
+        <span class="year mono">大三 · 成长</span>
+        <h3>实习、考研，开始往外看</h3>
+        <p>你在甬江边一边散步一边想未来，校园依然熟悉，心里却悄悄装下了更大的世界。</p>
+      </div>
+      <div class="t-item">
+        <span class="year mono">大四 · 告别</span>
+        <h3>答辩通过那天，阳光正好</h3>
+        <p>你在校训石前拍下最后一张合照，宁波大学把这四年折成一张明信片，准备寄往你的下一段旅程。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="wall" class="reveal">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag mono">03 · MESSAGES FOR 程彤彤</span>
+      <h2>写给程彤彤的毕业留言</h2>
+      <p>老师、同学、朋友——想对程彤彤说的话，都可以留在这里，攒成一墙离别前的祝福。</p>
+    </div>
+
+    <form class="wall-form" id="wallForm">
+      <input type="text" id="wallName" placeholder="你的名字 / 昵称" maxlength="20" required>
+      <input type="text" id="wallClass" placeholder="班级 / 关系（选填，比如室友、社团搭子）" maxlength="20">
+      <textarea id="wallMsg" placeholder="写给程彤彤的一句话……" maxlength="120" required></textarea>
+      <button type="submit" class="wall-submit">投递明信片</button>
+    </form>
+    <p class="wall-hint">留言只保存在本次浏览中，刷新页面后会清空，不会上传或公开存储。</p>
+
+    <div class="wall" id="wallList">
+      <p class="wall-empty">还没有人留言，第一句祝福，由你来写～</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="seal serif">实事求是<br>经世致用</div>
+    <p>致程彤彤 —— 宁波大学愿你带着这些记忆，走向更远的地方。</p>
+    <p class="mono" style="font-size:0.7rem;">宁波大学 · 毕业季纪念页 · 谨以此页，送给程彤彤</p>
+  </div>
+</footer>
+
+<script>
+  // reveal on scroll
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el=>io.observe(el));
+
+  // card flip
+  document.querySelectorAll('.card-flip button').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const card = btn.closest('.card-flip');
+      const flipped = card.classList.toggle('flipped');
+      btn.setAttribute('aria-pressed', flipped ? 'true' : 'false');
+    });
+  });
+
+  // message wall (in-memory only)
+  const wallForm = document.getElementById('wallForm');
+  const wallList = document.getElementById('wallList');
+  let firstNote = true;
+
+  wallForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    const name = document.getElementById('wallName').value.trim();
+    const cls = document.getElementById('wallClass').value.trim();
+    const msg = document.getElementById('wallMsg').value.trim();
+    if(!name || !msg) return;
+
+    if(firstNote){ wallList.innerHTML = ''; firstNote = false; }
+
+    const note = document.createElement('div');
+    note.className = 'wall-note';
+    note.style.setProperty('--r', (Math.random()*6 - 3) + 'deg');
+
+    const who = document.createElement('div');
+    who.className = 'who mono';
+    who.textContent = cls ? (name + ' · ' + cls) : name;
+
+    const p = document.createElement('p');
+    p.textContent = msg;
+
+    note.appendChild(who);
+    note.appendChild(p);
+    wallList.prepend(note);
+
+    wallForm.reset();
+    document.getElementById('wallName').focus();
+  });
+</script>
+
+</body>
+</html>
